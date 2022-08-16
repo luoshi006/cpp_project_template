@@ -5,10 +5,12 @@ project(helloworld
         LANGUAGES CXX)
 set(TARGET_NAME ${PROJECT_NAME})
 
+set(PROJ_SOURCE_DIR ${PROJECT_SOURCE_DIR})
 set(PROJ_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}")
 
 # send option definitions to cmake cache
 option(ARMHL "arm-hl plantform" OFF)
+option(EN_TEST "enable test" OFF)
 
 # choose toolchain
 if (ARMHL)
@@ -33,10 +35,16 @@ add_custom_target(  git_version_tgt ALL
 message(STATUS "target: ${TARGET_NAME}")
 message(STATUS "build type: ${CMAKE_BUILD_TYPE}")
 
-# add_subdirectory(thirdparty/catch)
-# add_subdirectory(test)
-
 add_subdirectory(src/lib/version)
 add_subdirectory(src/examples)
-
 # add_dependencies(${TARGET_NAME} git_version_tgt)
+
+
+# google test
+if (${EN_TEST})
+    enable_testing()
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+    add_subdirectory(thirdparty/googletest-release-1.12.1)
+    add_subdirectory(tests)
+endif()
