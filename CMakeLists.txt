@@ -5,6 +5,8 @@ project(helloworld
         LANGUAGES CXX)
 set(TARGET_NAME ${PROJECT_NAME})
 
+set(PROJ_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+
 # send option definitions to cmake cache
 option(ARMHL "arm-hl plantform" OFF)
 
@@ -19,7 +21,7 @@ endif()
 include(${PROJECT_SOURCE_DIR}/cmake/common.cmake)
 
 # get git version
-add_custom_target( git_version_tgt
+add_custom_target(  git_version_tgt ALL
                     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/version/git_version.cmake
                     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/git_version.h ${CMAKE_CURRENT_BINARY_DIR}
                     COMMAND ${CMAKE_COMMAND} -E remove ${CMAKE_CURRENT_SOURCE_DIR}/git_version.h
@@ -28,13 +30,13 @@ add_custom_target( git_version_tgt
                             ${CMAKE_CURRENT_SOURCE_DIR}/cmake/version/git_version.h.in)
 
 
-
 message(STATUS "target: ${TARGET_NAME}")
 message(STATUS "build type: ${CMAKE_BUILD_TYPE}")
 
 # add_subdirectory(thirdparty/catch)
 # add_subdirectory(test)
 
-add_executable(${TARGET_NAME} src/examples/hello_version.cpp )
-add_dependencies(${TARGET_NAME} git_version_tgt)
-target_include_directories(${TARGET_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+add_subdirectory(src/lib/version)
+add_subdirectory(src/examples)
+
+# add_dependencies(${TARGET_NAME} git_version_tgt)

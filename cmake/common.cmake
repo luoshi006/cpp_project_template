@@ -6,8 +6,6 @@ endif()
 
 if (NOT CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel." FORCE )
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC -pthread -g -ggdb -Wall -O0 -std=gnu99")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -pthread -g -ggdb -Wall -O0 -std=c++11")
     message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 endif()
 

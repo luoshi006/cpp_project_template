@@ -6,12 +6,14 @@
 # git rev-parse --abbrev-ref HEAD -> gives current branch
 # git log -n 1 --pretty=%cd --pretty=%cI -> gives the time of the last commit
 
-find_package(Git)
+find_package(Git QUIET)
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
-execute_process(COMMAND ${GIT_EXECUTABLE} log --pretty=format:'%h' -n 1
-                OUTPUT_VARIABLE GIT_REV
-                ERROR_QUIET)
+if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
+    execute_process(COMMAND ${GIT_EXECUTABLE} log --pretty=format:'%h' -n 1
+                    OUTPUT_VARIABLE GIT_REV
+                    ERROR_QUIET)
+endif()
 
 if ("${GIT_REV}" STREQUAL "")
     set(GIT_COMMIT "N/A")
@@ -28,11 +30,13 @@ else()
     execute_process(COMMAND ${GIT_EXECUTABLE} describe --exact-match --tags
                     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
                     OUTPUT_VARIABLE GIT_TAG
-                    OUTPUT_STRIP_TRAILING_WHITESPACE)
+                    OUTPUT_STRIP_TRAILING_WHITESPACE
+                    ERROR_QUIET)
     execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
                     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
                     OUTPUT_VARIABLE GIT_BRANCH
-                    OUTPUT_STRIP_TRAILING_WHITESPACE)
+                    OUTPUT_STRIP_TRAILING_WHITESPACE
+                    ERROR_QUIET)
     if ("${GIT_BRANCH}" STREQUAL "")
         set(GIT_BRANCH "N/A")
     endif()
