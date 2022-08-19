@@ -1,6 +1,6 @@
 # cpp project template
 
-# usage
+# Usage
 ```sh
 # build
     $ cmake -S . -B build
@@ -16,7 +16,15 @@
     $ cmake --build build --target test
 ```
 
-## TODO
+# Library
+```sh
+├── thirdparty
+│   ├── catch @v2.13.9
+│   ├── googletest-release-1.12.1
+│   └── quill @v2.1.0
+```
+
+# TODO
 - tests
   - ctest
 - coverage
