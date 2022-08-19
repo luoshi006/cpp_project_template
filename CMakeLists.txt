@@ -36,6 +36,7 @@ message(STATUS "target: ${TARGET_NAME}")
 message(STATUS "build type: ${CMAKE_BUILD_TYPE}")
 
 add_subdirectory(src/lib/version)
+add_subdirectory(src/modules/logger)
 add_subdirectory(src/examples)
 # add_dependencies(${TARGET_NAME} git_version_tgt)
 
