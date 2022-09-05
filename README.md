@@ -11,9 +11,13 @@
     $ cmake --build build --verbose # CMake 3.14+ only
 
 # test
-    $ cmake -S . -B build -DEN_TEST=ON
+    $ cmake -S . -B build -DBUILD_TESTS=ON
     $ cmake --build build --target tests_build
     $ cmake --build build --target test
+
+# coverage
+    $ cmake -S . -B build -DBUILD_TESTS=ON -DBUILD_COVERAGE=ON
+    $ cmake --build build --target ccov-all
 ```
 
 # Library
@@ -27,4 +31,3 @@
 # TODO
 - tests
   - ctest
-- coverage
