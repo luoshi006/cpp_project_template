@@ -23,3 +23,8 @@ foreach(test_name ${tests})
                                 240)
 endforeach()
 
+if(BUILD_COVERAGE)
+    foreach(test_name ${tests})
+        target_code_coverage(${test_name} AUTO ALL) # EXCLUDE non_covered.cpp test/*)
+    endforeach()
+endif()
