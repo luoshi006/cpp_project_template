@@ -6,14 +6,15 @@
 // Logger
 // https://github.com/Tearnote/Minote/blob/master/src/base/log.hpp
 
-namespace cpt::base
+namespace cpt::base {
+class Log
 {
-class Log {
 public:
     typedef quill::Logger Logger;
 
     // get instance
-    static Logger* get_logger() {
+    static Logger *get_logger()
+    {
         if (nullptr == m_logger) {
             init(log_name, log_level);
         }
@@ -21,14 +22,14 @@ public:
     }
 
 private:
-	static Logger* m_logger;
+    static Logger *m_logger;
     static constexpr std::string_view log_name = "log_cpt.txt";
     //TODO: change log level for debug
     static constexpr quill::LogLevel log_level = quill::LogLevel::TraceL3;
 
-	// Start logging to console and specified logfile. All messages below
-	// the provided log level will be dropped.
-	static void init(std::string_view filename, quill::LogLevel level);
+    // Start logging to console and specified logfile. All messages below
+    // the provided log level will be dropped.
+    static void init(std::string_view filename, quill::LogLevel level);
 };
 
 // Logging functions, fmtlib formatting is supported.

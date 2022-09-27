@@ -7,7 +7,8 @@
 using namespace GitVersion;
 using namespace cpt::base;
 
-int main(int argc, const char** argv) {
+int main(int argc, const char **argv)
+{
     log_inf("Hello world!");
     log_inf("git version: {}", get_git_commit());
     log_inf("git tag    : {}", get_git_version());
