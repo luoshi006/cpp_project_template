@@ -7,6 +7,16 @@
 // https://github.com/Tearnote/Minote/blob/master/src/base/log.hpp
 
 namespace cpt::base {
+/**
+ * @brief Logger wrapper for quill
+ *
+ *      fmtlib formatting is supported.
+ *
+ *      log_inf(fmt, ...)
+ *      log_war(fmt, ...)
+ *      log_err(fmt, ...)
+ *      log_crt(fmt, ...)
+ */
 class Log
 {
 public:

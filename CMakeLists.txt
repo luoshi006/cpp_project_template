@@ -86,10 +86,13 @@ add_subdirectory(src/examples)
 # add_dependencies(${TARGET_NAME} git_version_tgt)
 
 # google test
-if (${BUILD_TESTS})
-    enable_testing()
-    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-    set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
-    add_subdirectory(thirdparty/googletest-release-1.12.1)
-    add_subdirectory(tests)
-endif()
+    if (${BUILD_TESTS})
+        enable_testing()
+        set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+        set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+        add_subdirectory(thirdparty/googletest-release-1.12.1)
+        add_subdirectory(tests)
+    endif()
+
+# Documentation
+    include(doxygen)
