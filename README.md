@@ -32,10 +32,16 @@
     $ cmake .. -DBUILD_ASAN=ON
     $ make use_after_free && ./src/examples/use_after_free
     # Note:
+    #    - ASAN, MSAN, TSAN, UBSAN
     #    - TSAN could not work with ASAN, because of "ASAN_OPTIONS"
-    #    - LSAN should working with Clang
+    #    - MSAN
+    #       - should working with Clang
+    #       - you must rebuild libcxx with '-fsanitize=memory',
+    #       - refs: https://github.com/google/sanitizers/wiki/MemorySanitizerLibcxxHowTo
+
 # Clang
     $ cmake -G "Unix Makefiles" -UCMAKE_C_COMPILER -DCMAKE_C_COMPILER=clang -UCMAKE_CXX_COMPILER -DCMAKE_CXX_COMPILER=clang++ ..
+
 # Ninja
     $ cmake -G "Ninja" -UCMAKE_C_COMPILER -DCMAKE_C_COMPILER=clang -UCMAKE_CXX_COMPILER -DCMAKE_CXX_COMPILER=clang++ ..
 
@@ -51,6 +57,3 @@
 │   └── quill @v2.1.0
 ```
 
-# TODO
-- tests
-  - ctest
