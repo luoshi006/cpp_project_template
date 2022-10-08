@@ -95,4 +95,4 @@ add_subdirectory(src/examples)
     endif()
 
 # Documentation
-    include(doxygen)
+    include(Documentation)

@@ -7,7 +7,19 @@
 // https://github.com/Tearnote/Minote/blob/master/src/base/log.hpp
 
 namespace cpt::base {
+
+/*! \addtogroup cpt
+*  Additional documentation for group 'cpt'
+*  @{
+*/
+
+/*! \addtogroup base
+*  Additional documentation for group 'cpt::base'
+*  @{
+*/
+
 /**
+ * @class Log
  * @brief Logger wrapper for quill
  *
  *      fmtlib formatting is supported.
@@ -15,14 +27,14 @@ namespace cpt::base {
  *      log_inf(fmt, ...)
  *      log_war(fmt, ...)
  *      log_err(fmt, ...)
- *      log_crt(fmt, ...)
  */
 class Log
 {
 public:
     typedef quill::Logger Logger;
 
-    // get instance
+    /** get instance
+    */
     static Logger *get_logger()
     {
         if (nullptr == m_logger) {
@@ -50,4 +62,6 @@ private:
 #define log_err(fmt, ...) LOG_ERROR(Log::get_logger()   , fmt, ##__VA_ARGS__)
 #define log_crt(fmt, ...) LOG_CRITICAL(Log::get_logger(), fmt, ##__VA_ARGS__)
 
+/*! @} End of Doxygen Groups*/
+/*! @} End of Doxygen Groups*/
 } // namespace

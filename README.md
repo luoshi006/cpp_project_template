@@ -49,8 +49,8 @@
     $ ./tools/scripts/fix_code_style.sh
 
 # Doxygen
-    $ cmake .. -DBUILD_DOXYGEN=ON
-    $ ninja doxygen
+    $ cmake .. -DBUILD_DOCS=ON
+    $ ninja Sphinx/Doxygen
 ```
 
 # Library
